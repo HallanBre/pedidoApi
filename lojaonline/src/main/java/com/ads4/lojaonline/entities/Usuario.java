@@ -17,10 +17,8 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nome;
-    private String login;
     private String email;
     private String cpf;
-    private String senha;
 
     @JsonIgnore
     @OneToMany(mappedBy = "usuario")
@@ -30,14 +28,11 @@ public class Usuario {
 
     }
 
-    public Usuario(int id, String nome, String login, String email, String cpf, String senha, List<Pedido> pedidos) {
+    public Usuario(int id, String nome, String email, String cpf) {
         this.id = id;
         this.nome = nome;
-        this.login = login;
         this.email = email;
         this.cpf = cpf;
-        this.senha = senha;
-        this.pedidos = pedidos;
     }
 
     public int getId() {
@@ -54,14 +49,6 @@ public class Usuario {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
     }
 
     public String getEmail() {
@@ -88,12 +75,6 @@ public class Usuario {
         this.pedidos = pedidos;
     }
 
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
+   
 
 }

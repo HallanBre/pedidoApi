@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ads4.lojaonline.dto.EmailDto;
 import com.ads4.lojaonline.entities.Email;
+import com.ads4.lojaonline.entities.Pedido;
 import com.ads4.lojaonline.services.EmailService;
 
 import jakarta.validation.Valid;
@@ -21,10 +22,10 @@ public class EmailController {
     EmailService emailservice;
 
     @PostMapping("/sending-email")
-    public ResponseEntity<Email> sendingEmail(@RequestBody @Valid EmailDto emailDto) {
+    public ResponseEntity<Email> sendingEmail(@RequestBody @Valid EmailDto emailDto , Pedido pedido) {
         Email emailModel = new Email();
         BeanUtils.copyProperties(emailDto, emailModel);
-        emailservice.sendEmail(emailModel);
+        emailservice.sendPedidoEmail(pedido);
         return new ResponseEntity<>(emailModel, HttpStatus.CREATED);
     }
 

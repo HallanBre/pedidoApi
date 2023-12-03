@@ -20,21 +20,18 @@ import com.ads4.lojaonline.services.PedidoService;
 public class PedidoController {
 
     @Autowired
-    PedidoRepository pRepository;
-
-    @Autowired
     PedidoService service;
 
     @GetMapping("/lista")
     public List<Pedido> getObject(){
-
         return service.listaPedido(); 
     }
    
 
-    @PostMapping("/cadastro") // receber informações do cadastro de pedidos
+   @PostMapping("/cadastro")
     public String cadastro(Pedido pedido){
-        return service.cadastroPedido(pedido);
+            return service.cadastroPedido(pedido);
+      
     }
 
      @GetMapping("/busca/{id}")

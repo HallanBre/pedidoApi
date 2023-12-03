@@ -1,19 +1,18 @@
 package com.ads4.lojaonline.entities;
 
-
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-
-import java.util.Set;
-
+import java.util.List;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-
 
 @Entity
 public class Pedido {
@@ -21,22 +20,19 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private LocalDateTime data;
+    private LocalDate data;
     private double valorTotal;
-
-   
 
     @ManyToOne(cascade = CascadeType.REFRESH)
     private Usuario usuario;
 
-    @OneToMany(cascade = CascadeType.REFRESH)
-    private Set<Produto> produtos;
+    @ManyToMany(cascade = CascadeType.REFRESH)
+    @JoinTable(name = "pedido_produtos", joinColumns = @JoinColumn(name = "pedido_id"), inverseJoinColumns = @JoinColumn(name = "produtos_id"))
+    private List<Produto> produtos;
 
-  
-
-    public Pedido(int id, LocalDateTime data, Usuario usuario, Set<Produto> produtos, double valorTotal) {
+    public Pedido(int id, LocalDate data, Usuario usuario, List<Produto> produtos, double valorTotal) {
         this.id = id;
-        this.data = LocalDateTime.now();
+        this.data = LocalDate.now();
         this.usuario = usuario;
         this.produtos = produtos;
         this.valorTotal = valorTotal;
@@ -53,11 +49,11 @@ public class Pedido {
         this.id = id;
     }
 
-    public LocalDateTime getData() {
+    public LocalDate getData() {
         return data;
     }
 
-    public void setData(LocalDateTime data) {
+    public void setData(LocalDate data) {
         this.data = data;
     }
 
@@ -69,15 +65,15 @@ public class Pedido {
         this.usuario = usuario;
     }
 
-      public Set<Produto> getProdutos() {
+    public List<Produto> getProdutos() {
         return produtos;
     }
 
-    public void setProdutos(Set<Produto> produtos) {
+    public void setProdutos(List<Produto> produtos) {
         this.produtos = produtos;
     }
 
-     public double getValorTotal() {
+    public double getValorTotal() {
         return valorTotal;
     }
 

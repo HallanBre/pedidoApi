@@ -7,7 +7,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-import jakarta.persistence.ManyToOne;
 
 
 @Entity
@@ -19,10 +18,9 @@ public class Produto {
     private String nome;
     private Double preco;
 
-    @ManyToOne
-    private Pedido pedido;
-     
 
+
+    
 
     public Produto(int id, String nome, Double preco, Pedido pedido) {
         this.id = id;
@@ -52,6 +50,7 @@ public class Produto {
     public void setPreco(Double preco) {
         this.preco = preco;
     }
+    
  
 
     

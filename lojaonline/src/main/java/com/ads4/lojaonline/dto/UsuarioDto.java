@@ -6,17 +6,15 @@ public class UsuarioDto {
 
     private int id;
     private String nome;
-    private String login;
     private String email;
     private String cpf;
 
     public UsuarioDto() {
     }
 
-    public UsuarioDto(int id, String nome, String login, String email, String cpf) {
+    public UsuarioDto(int id, String nome, String email, String cpf) {
         this.id = id;
         this.nome = nome;
-        this.login = login;
         this.email = email;
         this.cpf = cpf;
     }
@@ -24,7 +22,6 @@ public class UsuarioDto {
     public UsuarioDto(Usuario usuario) {
         this.id = usuario.getId();
         this.nome = usuario.getNome();
-        this.login = usuario.getLogin();
         this.email = usuario.getEmail();
         this.cpf = usuario.getCpf();
     }
@@ -43,14 +40,6 @@ public class UsuarioDto {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
     }
 
     public String getEmail() {

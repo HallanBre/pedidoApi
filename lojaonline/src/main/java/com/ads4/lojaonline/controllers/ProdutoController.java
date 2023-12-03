@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ads4.lojaonline.entities.Produto;
-import com.ads4.lojaonline.repository.ProdutoRepository;
 import com.ads4.lojaonline.services.ProdutoService;
 
 @RestController
@@ -20,8 +19,6 @@ public class ProdutoController {
     @Autowired
     ProdutoService service;
 
-    @Autowired
-    ProdutoRepository pRepository;
 
     @GetMapping("/lista")
     public List<Produto> getObject(){
