@@ -29,8 +29,8 @@ public class PedidoController {
    
 
    @PostMapping("/cadastro")
-    public String cadastro(Pedido pedido){
-            return service.cadastroPedido(pedido);
+    public void cadastro(Pedido pedido){
+    service.cadastroPedido(pedido);
       
     }
 

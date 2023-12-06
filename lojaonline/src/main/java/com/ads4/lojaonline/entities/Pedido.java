@@ -35,7 +35,7 @@ public class Pedido {
         this.data = LocalDate.now();
         this.usuario = usuario;
         this.produtos = produtos;
-        this.valorTotal = valorTotal;
+
     }
 
     public Pedido() {

@@ -7,6 +7,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import com.ads4.lojaonline.entities.Pedido;
+import com.ads4.lojaonline.entities.Produto;
 import com.ads4.lojaonline.repository.EmailRepository;
 
 @Service
@@ -17,17 +18,26 @@ public class EmailService {
     @Autowired
     JavaMailSender emailSender;
 
+    
+
     public void sendPedidoEmail(Pedido pedido) {
+        
+        //CONSTRUTOR DO EMAIL
+         StringBuilder textoEmail = new StringBuilder();
+            textoEmail.append("Pedido:").append(pedido.getId()).append("\n-------------------------\n");
+            for (Produto produto : pedido.getProdutos()) {
+                textoEmail.append(produto.getNome() + " " + produto.getPreco());
+                textoEmail.append("\n");
+            }
+            textoEmail.append("\n-------------------------\n" + "VALOR TOTAL: " + pedido.getValorTotal());
+            //FIM DO CONSTRUTOR
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("halllanbandrad@gmail.com");
-        message.setTo("hallanbandrad@gmail.com");
+        message.setTo("hallanbandrade@gmail.com");
         message.setSubject("Detalhes do Pedido");
-        message.setText(criarTextoPedido(pedido));
+        message.setText(textoEmail.toString());
         emailSender.send(message);
     }
-    private String criarTextoPedido(Pedido pedido) {
-        // Aqui você formata a mensagem do e-mail com os detalhes do pedido
-        return "Detalhes do Pedido: " + pedido.toString(); // Substitua com a formatação desejada
-    }
+   
     
 }
